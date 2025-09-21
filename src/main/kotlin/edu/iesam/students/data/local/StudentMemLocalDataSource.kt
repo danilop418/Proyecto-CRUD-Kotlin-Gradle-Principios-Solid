@@ -11,4 +11,8 @@ class StudentMemLocalDataSource {
         dataSource.put(student.exp, student)
     }
 
+    fun exist(student: Student): Boolean {
+        return dataSource.containsKey(student.exp)
+    }
+
 }

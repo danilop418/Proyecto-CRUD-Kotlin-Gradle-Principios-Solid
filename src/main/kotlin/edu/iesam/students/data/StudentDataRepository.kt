@@ -13,13 +13,10 @@ class StudentDataRepository(
 ) : StudentRepository {
 
     override fun save(student: Student) {
-        /*
-        if(memLocalDataSource.exist(student)){
+        if (memLocalDataSource.exist(student)) {
 
         } else {
 
         }
-    }
-         */
     }
 }
