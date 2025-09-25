@@ -21,6 +21,34 @@ class SaveStudentUseCaseTest {
         verify (exactly = 1){ studentRepositoryMock.save(student)  }
     }
 
+    @Test
+    fun `when student has empty exp`() {
+        //Given
+        val studentRepositoryMock = mockk<StudentRepository>(relaxed = true)
+        val saveStudentUseCase = SaveStudentUseCase(studentRepositoryMock)
+        val student = Student(" ","Name")
+
+        //When
+        saveStudentUseCase(student)
+
+        //Then
+        verify(exactly = 1) { studentRepositoryMock.save(student)  }
+    }
+
+    @Test
+    fun `when student has empty name`() {
+        //Given
+        val studentRepositoryMock = mockk<StudentRepository>(relaxed = true)
+        val saveStudentUseCase = SaveStudentUseCase(studentRepositoryMock)
+        val student = Student("003"," ")
+
+        //When
+        saveStudentUseCase(student)
+
+        //Then
+        verify(exactly = 1) { studentRepositoryMock.save(student)  }
+    }
+
 
 
 }
