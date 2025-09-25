@@ -28,11 +28,10 @@ class SaveStudentUseCaseTest {
         val saveStudentUseCase = SaveStudentUseCase(studentRepositoryMock)
         val student = Student(" ","Name")
 
-        //When
-        saveStudentUseCase(student)
-
-        //Then
-        verify(exactly = 1) { studentRepositoryMock.save(student)  }
+        //When && Then
+        assertThrows(IllegalArgumentException::class.java){
+            saveStudentUseCase(student)
+        }
     }
 
     @Test
@@ -42,10 +41,9 @@ class SaveStudentUseCaseTest {
         val saveStudentUseCase = SaveStudentUseCase(studentRepositoryMock)
         val student = Student("003"," ")
 
-        //When
-        saveStudentUseCase(student)
-
-        //Then
-        verify(exactly = 1) { studentRepositoryMock.save(student)  }
+        //When && Then
+        assertThrows(IllegalArgumentException::class.java){
+            saveStudentUseCase(student)
+        }
     }
 }
