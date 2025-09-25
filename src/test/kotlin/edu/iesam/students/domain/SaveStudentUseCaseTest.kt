@@ -26,7 +26,7 @@ class SaveStudentUseCaseTest {
         //Given
         val studentRepositoryMock = mockk<StudentRepository>(relaxed = true)
         val saveStudentUseCase = SaveStudentUseCase(studentRepositoryMock)
-        val student = Student(" ","Name")
+        val student = Student("","Name")
 
         //When && Then
         assertThrows(IllegalArgumentException::class.java){
@@ -39,7 +39,7 @@ class SaveStudentUseCaseTest {
         //Given
         val studentRepositoryMock = mockk<StudentRepository>(relaxed = true)
         val saveStudentUseCase = SaveStudentUseCase(studentRepositoryMock)
-        val student = Student("003"," ")
+        val student = Student("003","")
 
         //When && Then
         assertThrows(IllegalArgumentException::class.java){
