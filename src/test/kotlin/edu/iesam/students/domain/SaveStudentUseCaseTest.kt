@@ -48,7 +48,4 @@ class SaveStudentUseCaseTest {
         //Then
         verify(exactly = 1) { studentRepositoryMock.save(student)  }
     }
-
-
-
 }
