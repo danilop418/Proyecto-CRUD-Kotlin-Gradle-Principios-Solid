@@ -3,6 +3,7 @@ package edu.iesam.students.domain
 import org.junit.Assert.*
 import org.junit.Test
 import io.mockk.mockk
+import io.mockk.verify
 
 class SaveStudentUseCaseTest {
 
@@ -12,6 +13,12 @@ class SaveStudentUseCaseTest {
         val studentRepositoryMock = mockk<StudentRepository>(relaxed = true)
         val saveStudentUseCase = SaveStudentUseCase(studentRepositoryMock)
         val student = Student("001","Name")
+
+        //When
+        saveStudentUseCase(student)
+
+        //Then
+        verify (exactly = 1){ studentRepositoryMock.save(student)  }
     }
 
 
