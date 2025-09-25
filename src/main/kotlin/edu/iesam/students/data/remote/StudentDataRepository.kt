@@ -1,6 +1,5 @@
-package edu.iesam.students.data
+package edu.iesam.students.data.remote
 
-import edu.iesam.students.data.remote.StudentApiRemoteDataSource
 import edu.iesam.students.domain.Student
 import edu.iesam.students.domain.StudentRepository
 import edu.iesam.students.domain.data.local.remote.StudentMemLocalDataSource

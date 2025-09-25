@@ -10,8 +10,8 @@ repositories {
 }
 
 dependencies {
-    testImplementation(kotlin("junit:junit:1.3.0"))
-    testImplementation(kotlin("io.mockk:mockk:1.14.5"))
+    testImplementation("junit:junit:4.13.2")
+    testImplementation("io.mockk:mockk:1.14.5")
 }
 
 tasks.test {
