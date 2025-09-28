@@ -1,4 +1,4 @@
-package edu.iesam.students.domain
+package edu.iesam.studentplayground.features.students.domain
 
 import org.junit.Assert.*
 import org.junit.Test
@@ -15,7 +15,7 @@ class SaveStudentUseCaseTest {
         val student = Student("001","Name")
 
         //When
-        saveStudentUseCase(student)
+        saveStudentUseCase.save(student)
 
         //Then
         verify (exactly = 1){ studentRepositoryMock.save(student)  }
@@ -30,7 +30,7 @@ class SaveStudentUseCaseTest {
 
         //When && Then
         assertThrows(IllegalArgumentException::class.java){
-            saveStudentUseCase(student)
+            saveStudentUseCase.save(student)
         }
     }
 
@@ -43,7 +43,7 @@ class SaveStudentUseCaseTest {
 
         //When && Then
         assertThrows(IllegalArgumentException::class.java){
-            saveStudentUseCase(student)
+            saveStudentUseCase.save(student)
         }
     }
 }
