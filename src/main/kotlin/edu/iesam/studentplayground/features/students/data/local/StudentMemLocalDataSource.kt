@@ -4,19 +4,20 @@ import edu.iesam.studentplayground.features.students.domain.Student
 
 class StudentMemLocalDataSource {
     private val dataSource: MutableMap<String, Student> = mutableMapOf()
+
     fun save(student: Student) {
         dataSource.put(student.exp, student)
     }
 
     fun search(exp: String): Student? {
-        if (dataSource.containsKey(exp)) {
+        if (exist(exp)) {
             return dataSource[exp]
         }
         return null
     }
 
     fun update(name: String, student: Student): Student? {
-        if (dataSource.containsKey(student.exp)) {
+        if (exist(student.exp)) {
             val newStudent = Student(student.exp, name)
             dataSource.put(newStudent.exp, newStudent)
             return newStudent
@@ -28,7 +29,11 @@ class StudentMemLocalDataSource {
         dataSource.remove(exp)
     }
 
-    fun allStudents(): List<Student> {
+    fun fetchStudents(): List<Student> {
         return dataSource.values.toList()
+    }
+
+    fun exist(exp: String): Boolean {
+        return dataSource.containsKey(exp)
     }
 }

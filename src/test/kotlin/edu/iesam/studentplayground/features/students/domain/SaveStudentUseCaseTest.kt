@@ -46,4 +46,13 @@ class SaveStudentUseCaseTest {
             saveStudentUseCase.save(student)
         }
     }
+
+    @Test
+    fun `when the student already exist`(){
+        //Given
+        val studentRepositoryMockk = mockk<StudentRepository>(relaxed=true)
+        val saveStudentUseCase = SaveStudentUseCase(studentRepositoryMockk)
+        val existStudentUseCase = ExistStudentUseCase(studentRepositoryMockk)
+
+    }
 }
