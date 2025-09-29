@@ -30,7 +30,9 @@ class StudentMemLocalDataSource {
     }
 
     fun fetchStudents(): List<Student> {
-        return dataSource.values.toList()
+        return dataSource.map { it ->
+            it.value
+        }
     }
 
     fun exist(exp: String): Boolean {
