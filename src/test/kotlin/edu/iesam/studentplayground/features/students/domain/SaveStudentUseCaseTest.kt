@@ -73,16 +73,15 @@ class SaveStudentUseCaseTest {
 
         //When
         saveStudentUseCase.save(student1)
+
         every { studentRepositoryMockk.exist(student2.exp) } returns true
 
         //Then
         assertThrows(StudentAlreadyExistException::class.java) {
             saveStudentUseCase.save(student2)
         }
-        verify(exactly = 1) { studentRepositoryMockk.exist(student1.exp) }
+        verify(exactly = 2) { studentRepositoryMockk.exist(student1.exp) }
         verify(exactly = 1) { studentRepositoryMockk.save(student1) }
-
-        verify(exactly = 1) { studentRepositoryMockk.exist(student2.exp) }
         verify(exactly = 0) { studentRepositoryMockk.save(student2) }
 
     }

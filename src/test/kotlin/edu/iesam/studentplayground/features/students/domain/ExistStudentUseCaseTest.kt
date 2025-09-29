@@ -1,22 +1,45 @@
 package edu.iesam.studentplayground.features.students.domain
 
+import io.mockk.every
 import io.mockk.mockk
+import io.mockk.verify
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class ExistStudentUseCaseTest {
+
     @Test
-    fun `when the id exist`() {
-        //Give
-        val studentRepositoryMockk = mockk<StudentRepository>(relaxed = true)
-        val studentExistUseCase = ExistStudentUseCase(studentRepositoryMockk)
-        val student1 = Student("1", "Marcos")
-        val student2 = Student("1", "María")
+    fun `when the id exists, should return true`() {
+        //Given
+        val studentRepositoryMockk = mockk<StudentRepository>()
+        val existStudentUseCase = ExistStudentUseCase(studentRepositoryMockk)
+        val studentId = "1"
+
+        every { studentRepositoryMockk.exist(studentId) } returns true
 
         //When
-        studentExistUseCase.exist(student1.exp)
-        studentExistUseCase.exist(student2.exp)
+        val result = existStudentUseCase.exist(studentId)
 
         //Then
-        assert(true) { "The id of the student already exist" }
+        assertTrue(result)
+        verify(exactly = 1) { studentRepositoryMockk.exist(studentId) }
+    }
+
+    @Test
+    fun `when the id does not exist, should return false`() {
+        //Given
+        val studentRepositoryMockk = mockk<StudentRepository>()
+        val existStudentUseCase = ExistStudentUseCase(studentRepositoryMockk)
+        val studentId = "999"
+
+        every { studentRepositoryMockk.exist(studentId) } returns false
+
+        //When
+        val result = existStudentUseCase.exist(studentId)
+
+        //Then
+        assertFalse(result)
+        verify(exactly = 1) { studentRepositoryMockk.exist(studentId) }
     }
 }
